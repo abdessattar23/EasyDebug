@@ -1,0 +1,25 @@
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugFeignAutoConfiguration.java
+  s_874fffc94cbe46::t_2c7c4e1f2ef7ba 1-55
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/feign/FeignCaptureClient.java
+  s_874fffc94cbe46::t_5a659773665096 1-164
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/ReactiveCaptureTest.java
+  s_874fffc94cbe46::t_c53a4583d6680d 1-94
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/reactivetest/ReactiveApp.java
+  s_874fffc94cbe46::t_e6e99e4c7371af 1-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "8df0f6bca3619bfc45248b242f1bca0fe94d04a5",
+  "prompts": {},
+  "sessions": {
+    "s_874fffc94cbe46": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "c48853b8-18dd-496e-bf7b-d32ac468d303",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

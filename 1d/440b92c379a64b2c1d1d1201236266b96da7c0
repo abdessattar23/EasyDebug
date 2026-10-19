@@ -1,0 +1,27 @@
+easydebug-server/src/test/java/com/orange/igr/easydebug/server/PackagedServerIT.java
+  s_a0a9a824904a58::t_5ac7b1aeb3b44d 35-36
+  s_a0a9a824904a58::t_faeadfb7600a49 1-8,10-16,18-29,33,38-39,41-45,47,49-52,58,60,63-65,76-77,88-97,99-102,105-108,129-186
+  s_a0a9a824904a58::t_7f802e7343c333 17
+  s_a0a9a824904a58::t_593e3badc6e9b5 110-128
+  s_a0a9a824904a58::t_fc3743f7f46926 30-32,34,37,40,46,48,53-57,59,61-62,66-75,103-104,109
+  s_a0a9a824904a58::t_28da60d68385d4 9
+  s_a0a9a824904a58::t_dc0434e5d38662 98
+  s_a0a9a824904a58::t_0ad1209eb61790 78-87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "1d440b92c379a64b2c1d1d1201236266b96da7c0",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  },
+  "capture_gaps": 12
+}

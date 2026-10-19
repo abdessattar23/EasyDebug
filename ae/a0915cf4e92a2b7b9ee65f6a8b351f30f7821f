@@ -1,0 +1,41 @@
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/tracing/TraceRelay.java
+  s_a0a9a824904a58::t_8a97c24e820a7a 1-31
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/tracing/TracingApp.java
+  s_a0a9a824904a58::t_eab3c77def6d41 1-7,9-58,72
+  s_a0a9a824904a58::t_dba8d83f1cef44 8
+  s_a0a9a824904a58::t_3cd5e132175743 59-71
+docs/coverage.md
+  s_a0a9a824904a58::t_669918a609b7ff 25,27-41
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/tracing/TracingWithStarterTest.java
+  s_a0a9a824904a58::t_6646b9ce690b5a 1-7,9-22,24-48,50-68,70,72,79-82,84-102
+  s_a0a9a824904a58::t_ed4c74ebb375f0 23
+  s_a0a9a824904a58::t_04f66538b38dd6 8
+  s_a0a9a824904a58::t_d5bc55676f0011 49
+  s_a0a9a824904a58::t_529281f5b74bc7 69,71,73-78,83
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/tracing/TracingWithoutStarterTest.java
+  s_a0a9a824904a58::t_bacb5a262882a4 1-3,5-12,14-33
+  s_a0a9a824904a58::t_82c48727135612 13
+  s_a0a9a824904a58::t_8b6a2996e62b7d 4
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/CaptureHooksTest.java
+  s_a0a9a824904a58::t_dca446136f76eb 41
+easydebug-spring-boot-starter/pom.xml
+  s_a0a9a824904a58::t_71909f550f4bbf 87-96
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/ReactiveCaptureTest.java
+  s_a0a9a824904a58::t_1d61dce2971ce6 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "aea0915cf4e92a2b7b9ee65f6a8b351f30f7821f",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

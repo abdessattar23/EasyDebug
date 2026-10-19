@@ -48,6 +48,10 @@ public final class ExchangeAssembler {
             extra.put("stack", stack(error));
             extra.put("stackTruncated", stack(error).contains("[truncated"));
         }
+        String traceId = TraceIds.from(safeRequestHeaders, mdc);
+        if (traceId != null) {
+            extra.putIfAbsent("traceId", traceId);
+        }
         return new CaptureEvent(
                 null,
                 Defaults.KIND_HTTP,

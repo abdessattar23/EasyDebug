@@ -1,5 +1,6 @@
 package com.orange.igr.easydebug.starter.testapp;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
@@ -43,5 +44,11 @@ public class TestApp {
     @GetMapping("/boom")
     public String boom() {
         throw new IllegalStateException("boom");
+    }
+
+    @GetMapping("/headers")
+    public Map<String, String> headers(HttpServletRequest request) {
+        String traceparent = request.getHeader("traceparent");
+        return Map.of("traceparent", traceparent == null ? "" : traceparent);
     }
 }

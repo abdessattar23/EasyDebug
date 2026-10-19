@@ -1,0 +1,9 @@
+com.orange.igr.easydebug.starter.EasyDebugNoticeAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugServletAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugWebClientAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugRestClientAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugRestTemplateAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugRabbitAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugFeignAutoConfiguration
+com.orange.igr.easydebug.starter.EasyDebugWebFluxAutoConfiguration

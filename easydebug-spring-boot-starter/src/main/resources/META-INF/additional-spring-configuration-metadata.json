@@ -1,0 +1,58 @@
+{
+  "properties": [
+    {
+      "name": "easydebug.url",
+      "description": "Collector base URL. Blank disables capture. Example: http://127.0.0.1:8090."
+    },
+    {
+      "name": "easydebug.service",
+      "description": "Service name stored on every event. Defaults to spring.application.name."
+    },
+    {
+      "name": "easydebug.max-body-bytes",
+      "type": "java.lang.Integer",
+      "defaultValue": 1048576,
+      "description": "Prefix of each body kept on the event. Size and SHA-256 still cover the full bytes."
+    },
+    {
+      "name": "easydebug.queue-capacity",
+      "type": "java.lang.Integer",
+      "defaultValue": 10000,
+      "description": "In-memory queue size. Overflow is reported as a capture.gap event."
+    },
+    {
+      "name": "easydebug.timeout",
+      "type": "java.time.Duration",
+      "defaultValue": "2s",
+      "description": "Timeout of the ingest POST."
+    },
+    {
+      "name": "easydebug.spool-memory-bytes",
+      "type": "java.lang.Integer",
+      "defaultValue": 8388608,
+      "description": "Body bytes kept in memory before spilling to a temp file."
+    },
+    {
+      "name": "easydebug.exclude-paths",
+      "description": "Comma-separated request path prefixes to skip. Blank means none."
+    },
+    {
+      "name": "easydebug.exclude-hosts",
+      "description": "Comma-separated hosts to skip. Blank means none."
+    },
+    {
+      "name": "easydebug.redact-headers",
+      "defaultValue": "Authorization,Cookie,Set-Cookie,Proxy-Authorization",
+      "description": "Header names whose values are stored as [redacted]. Blank stores the raw values."
+    },
+    {
+      "name": "easydebug.redact-query",
+      "defaultValue": "sig,signature,X-Amz-Signature,X-Amz-Security-Token",
+      "description": "Query parameter names whose values are stored as [redacted]. Blank stores the raw values."
+    },
+    {
+      "name": "easydebug.correlation-keys",
+      "description": "MDC or header names copied into the correlation field. The full MDC is always stored."
+    }
+  ]
+}

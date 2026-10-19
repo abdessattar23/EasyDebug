@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EasyDebug</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10140f;
+      --panel: #1a2118;
+      --line: #2c3828;
+      --text: #edf3e6;
+      --muted: #8d9a84;
+      --in: #b6f25c;
+      --out: #7ec8ff;
+      --gap: #ffb020;
+      --policy: #d7b4ff;
+      --bad: #ff8d7a;
+      --redacted: #ffb4a8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.45 ui-sans-serif, system-ui, sans-serif;
+    }
+    header, .policy, .filters { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+    h1 { margin: 0; font-size: 20px; letter-spacing: 0.04em; }
+    h1 span { color: var(--in); }
+    .muted { color: var(--muted); }
+    .policy { background: #141a12; }
+    .policy h2 { margin: 0 0 8px; font-size: 13px; color: var(--policy); text-transform: uppercase; letter-spacing: 0.08em; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
+    label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+    input, select, button {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 8px;
+      font: inherit;
+    }
+    button { cursor: pointer; }
+    main { display: grid; grid-template-columns: minmax(280px, 420px) 1fr; min-height: calc(100vh - 180px); }
+    #list { border-right: 1px solid var(--line); overflow: auto; max-height: calc(100vh - 180px); }
+    .row { display: block; width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 10px 12px; }
+    .row.active { background: #243022; }
+    .row .top { display: flex; gap: 8px; align-items: center; }
+    .badge { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+    .IN { color: var(--in); }
+    .OUT { color: var(--out); }
+    .gap { color: var(--gap); }
+    .policy-kind { color: var(--policy); }
+    .url { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #detail { padding: 16px 18px 40px; overflow: auto; max-height: calc(100vh - 180px); }
+    pre, .tree {
+      font: 12px/1.45 ui-monospace, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0c100c;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .k { color: var(--muted); }
+    .redacted { color: var(--redacted); }
+    .warn { color: var(--gap); }
+    .headline { margin: 0 0 12px; }
+    .headline h2 { margin: 0 0 4px; font-size: 16px; }
+    .bodies { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .bodies h3, #detail > h3 { margin: 0 0 6px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .pager { display: flex; gap: 8px; align-items: center; }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      #list, #detail { max-height: none; }
+      .bodies { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Easy<span>Debug</span></h1>
+      <div class="muted">Every hooked call. Nothing is filtered out on read.</div>
+    </div>
+    <div class="muted" id="count"></div>
+  </header>
+  <section class="policy">
+    <h2>Capture policy</h2>
+    <div id="policy" class="muted">No policy event yet. Start an app with the starter and EASYDEBUG_URL pointed here.</div>
+  </section>
+  <form class="filters" id="filters">
+    <label>Text<input name="q" placeholder="url, body, error"></label>
+    <label>Direction
+      <select name="direction"><option value="">any</option><option>IN</option><option>OUT</option></select>
+    </label>
+    <label>Kind<input name="kind" placeholder="http, rabbit, capture.gap"></label>
+    <label>Service<input name="service"></label>
+    <label>Method<input name="method" placeholder="GET"></label>
+    <label>Host<input name="host" placeholder="files.example"></label>
+    <label>Status<input name="status" inputmode="numeric" placeholder="500"></label>
+    <label>Live<input type="checkbox" name="live" checked></label>
+    <button type="submit">Apply</button>
+    <div class="pager">
+      <button type="button" id="prev">Previous</button>
+      <span class="muted" id="page"></span>
+      <button type="button" id="next">Next</button>
+    </div>
+  </form>
+  <main>
+    <div id="list"></div>
+    <div id="detail" class="muted">Select an event. The stored JSON is shown in full.</div>
+  </main>
+  <script>
+    const list = document.querySelector("#list");
+    const detail = document.querySelector("#detail");
+    const policy = document.querySelector("#policy");
+    const count = document.querySelector("#count");
+    const form = document.querySelector("#filters");
+    const page = document.querySelector("#page");
+    const PAGE = 50;
+    let selected = null;
+    let offset = 0;
+    let total = 0;
+    let timer = null;
+
+    function params() {
+      const data = new FormData(form);
+      const query = new URLSearchParams();
+      query.set("limit", String(PAGE));
+      query.set("offset", String(offset));
+      query.set("view", "summary");
+      for (const [key, value] of data.entries()) {
+        if (key === "live") continue;
+        if (key === "status" && !/^\d+$/.test(value)) continue;
+        if (value) query.set(key, value);
+      }
+      return query;
+    }
+
+    async function load() {
+      const response = await fetch("/api/events?" + params().toString());
+      const body = await response.json();
+      total = body.total;
+      const from = body.total === 0 ? 0 : offset + 1;
+      const to = offset + body.items.length;
+      count.textContent = "showing " + from + "–" + to + " of " + body.total;
+      page.textContent = body.total === 0 ? "no rows" : (from + "–" + to);
+      list.replaceChildren();
+      for (const event of body.items) {
+        const button = document.createElement("button");
+        button.className = "row" + (event.id === selected ? " active" : "");
+        button.type = "button";
+        const top = document.createElement("div");
+        top.className = "top";
+        const badge = document.createElement("span");
+        badge.className = "badge " + (event.direction || (event.kind === "capture.gap" ? "gap" : event.kind === "capture.policy" ? "policy-kind" : ""));
+        badge.textContent = event.direction || event.kind || "event";
+        const meta = document.createElement("span");
+        meta.textContent = [event.method, event.status, event.durationMs != null ? event.durationMs + "ms" : "", event.hook, event.service].filter(Boolean).join(" · ");
+        top.append(badge, meta);
+        const url = document.createElement("div");
+        url.className = "url";
+        url.textContent = event.url || event.error || event.kind;
+        button.append(top, url);
+        button.addEventListener("click", () => open(event.id, button));
+        list.append(button);
+      }
+      if (!body.items.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.style.padding = "12px";
+        empty.textContent = "No events match.";
+        list.append(empty);
+      }
+    }
+
+    async function loadPolicy() {
+      const response = await fetch("/api/policy");
+      if (response.status === 204) {
+        policy.textContent = "No policy event yet. Start an app with the starter and EASYDEBUG_URL pointed here.";
+        return;
+      }
+      policy.replaceChildren(render(await response.json()));
+    }
+
+    async function open(id, button) {
+      selected = id;
+      for (const row of list.querySelectorAll(".row")) row.classList.remove("active");
+      if (button) button.classList.add("active");
+      const response = await fetch("/api/events/" + encodeURIComponent(id));
+      const event = await response.json();
+      detail.replaceChildren();
+      const head = document.createElement("div");
+      head.className = "headline";
+      const title = document.createElement("h2");
+      title.textContent = [event.direction || event.kind, event.method, event.status, event.durationMs != null ? event.durationMs + "ms" : ""]
+          .filter(Boolean).join(" · ");
+      const url = document.createElement("div");
+      url.textContent = event.url || event.error || "";
+      head.append(title, url);
+      const bodies = document.createElement("div");
+      bodies.className = "bodies";
+      bodies.append(bodyPanel("Request", event.request), bodyPanel("Response", event.response));
+      const stored = document.createElement("h3");
+      stored.textContent = "Stored event";
+      detail.append(head, bodies, stored, render(event));
+    }
+
+    function bodyPanel(title, side) {
+      const box = document.createElement("section");
+      const heading = document.createElement("h3");
+      heading.textContent = title;
+      box.append(heading);
+      if (!side) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "none";
+        box.append(empty);
+        return box;
+      }
+      const meta = document.createElement("div");
+      meta.className = "muted";
+      meta.textContent = [
+        side.contentType,
+        side.filename,
+        side.size != null ? side.size + " bytes" : "",
+        side.truncated ? "truncated" : "",
+        side.sha256 ? "sha256 " + side.sha256 : ""
+      ].filter(Boolean).join(" · ");
+      const pre = document.createElement("pre");
+      pre.textContent = side.body == null || side.body === "" ? "(empty)" : side.body;
+      if (side.body === "[redacted]") pre.classList.add("redacted");
+      if (side.truncated || (typeof side.body === "string" && side.body.includes("[truncated"))) pre.classList.add("warn");
+      box.append(meta, pre);
+      return box;
+    }
+
+    function render(value) {
+      if (value === null || value === undefined) {
+        const span = document.createElement("span");
+        span.className = "muted";
+        span.textContent = "null";
+        return span;
+      }
+      if (typeof value === "string") {
+        const pre = document.createElement("pre");
+        pre.textContent = value;
+        if (value === "[redacted]") pre.classList.add("redacted");
+        if (value.includes("[truncated")) pre.classList.add("warn");
+        return pre;
+      }
+      if (typeof value !== "object") {
+        const span = document.createElement("span");
+        span.textContent = String(value);
+        if (value === true) span.classList.add("warn");
+        return span;
+      }
+      const box = document.createElement("div");
+      box.className = "tree";
+      const entries = Array.isArray(value) ? value.map((item, i) => [String(i), item]) : Object.entries(value);
+      for (const [key, item] of entries) {
+        const row = document.createElement("div");
+        const name = document.createElement("span");
+        name.className = "k";
+        name.textContent = key + ": ";
+        row.append(name, render(item));
+        box.append(row);
+      }
+      return box;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      offset = 0;
+      load();
+    });
+    document.querySelector("#prev").addEventListener("click", () => {
+      offset = Math.max(0, offset - PAGE);
+      load();
+    });
+    document.querySelector("#next").addEventListener("click", () => {
+      if (offset + PAGE < total) {
+        offset += PAGE;
+        load();
+      }
+    });
+
+    function tick() {
+      if (form.live.checked) {
+        load();
+        loadPolicy();
+      }
+    }
+
+    load();
+    loadPolicy();
+    timer = setInterval(tick, 2000);
+  </script>
+</body>
+</html>

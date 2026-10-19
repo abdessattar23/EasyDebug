@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: easydebug-demo
+
+server:
+  port: 8080
+
+easydebug:
+  url: ${EASYDEBUG_URL:}

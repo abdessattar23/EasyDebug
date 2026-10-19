@@ -1,0 +1,165 @@
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugProperties.java
+  unrecorded 1-137
+easydebug-spring-boot-starter/src/main/resources/META-INF/additional-spring-configuration-metadata.json
+  unrecorded 1-58
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/MdcSnapshot.java
+  unrecorded 1-26
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/CaptureHooksTest.java
+  unrecorded 1-282
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/InboundWebFilter.java
+  unrecorded 1-206
+easydebug-demo/pom.xml
+  unrecorded 1-41
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/RecordingPoster.java
+  unrecorded 1-24
+easydebug-server/pom.xml
+  unrecorded 1-46
+easydebug-server/src/test/resources/application.yml
+  unrecorded 1-3
+easydebug-core/src/test/java/com/orange/igr/easydebug/BodyCaptureTest.java
+  unrecorded 1-60
+docs/capture-contract.md
+  unrecorded 1-113
+easydebug-core/src/main/java/com/orange/igr/easydebug/Payload.java
+  unrecorded 1-48
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/ReactiveCaptureTest.java
+  s_874fffc94cbe46::t_c53a4583d6680d 1-94
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/SpoolServletInputStream.java
+  unrecorded 1-57
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/BufferingCaptureInterceptor.java
+  unrecorded 1-155
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugRestClientAutoConfiguration.java
+  unrecorded 1-73
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/HttpClients.java
+  unrecorded 1-22
+easydebug-demo/src/main/resources/application.yml
+  unrecorded 1-9
+easydebug-core/src/test/java/com/orange/igr/easydebug/EventSenderTest.java
+  unrecorded 1-132
+easydebug-core/src/main/java/com/orange/igr/easydebug/JsonMappers.java
+  unrecorded 1-18
+pom.xml
+  unrecorded 1-33
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugNoticeAutoConfiguration.java
+  unrecorded 1-24
+easydebug-core/pom.xml
+  unrecorded 1-41
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugAutoConfiguration.java
+  unrecorded 1-126
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugEnabledCondition.java
+  unrecorded 1-18
+easydebug-core/src/main/java/com/orange/igr/easydebug/EventSender.java
+  unrecorded 1-223
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/MultipartCaptureRequest.java
+  unrecorded 1-136
+easydebug-core/src/main/java/com/orange/igr/easydebug/EventPoster.java
+  unrecorded 1-13
+easydebug-server/src/test/java/com/orange/igr/easydebug/server/EventStoreTest.java
+  unrecorded 1-106
+easydebug-core/src/main/java/com/orange/igr/easydebug/Redactor.java
+  unrecorded 1-119
+easydebug-server/src/main/java/com/orange/igr/easydebug/server/EventStore.java
+  unrecorded 1-276
+easydebug-core/src/main/java/com/orange/igr/easydebug/JdkEventPoster.java
+  unrecorded 1-44
+docs/architecture.md
+  unrecorded 1-61
+easydebug-demo/src/main/java/com/orange/igr/easydebug/demo/DemoController.java
+  unrecorded 1-40
+easydebug-server/src/main/java/com/orange/igr/easydebug/server/EventController.java
+  unrecorded 1-87
+.gitignore
+  unrecorded 1-5
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugRabbitAutoConfiguration.java
+  unrecorded 1-91
+easydebug-core/src/main/java/com/orange/igr/easydebug/Spool.java
+  unrecorded 1-130
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugWebClientAutoConfiguration.java
+  unrecorded 1-80
+easydebug-server/src/main/resources/application.yml
+  unrecorded 1-17
+easydebug-server/src/main/java/com/orange/igr/easydebug/server/EasyDebugServerApplication.java
+  unrecorded 1-12
+docs/configuration.md
+  unrecorded 1-47
+README.md
+  s_a0a9a824904a58::t_b3dd3134f647c2 1-79
+easydebug-demo/src/main/java/com/orange/igr/easydebug/demo/DemoApplication.java
+  unrecorded 1-12
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugRecorder.java
+  unrecorded 1-25
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/CapturingResponse.java
+  unrecorded 1-151
+easydebug-core/src/main/java/com/orange/igr/easydebug/BodyCapture.java
+  unrecorded 1-149
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/reactivetest/ReactiveApp.java
+  s_874fffc94cbe46::t_e6e99e4c7371af 1-22
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/WebClientCaptureFilter.java
+  unrecorded 1-192
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/InboundCaptureFilter.java
+  unrecorded 1-225
+easydebug-spring-boot-starter/pom.xml
+  unrecorded 1-88
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugRestTemplateAutoConfiguration.java
+  unrecorded 1-67
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/rabbit/RabbitCaptureTest.java
+  unrecorded 1-95
+easydebug-core/src/main/java/com/orange/igr/easydebug/CapturePolicy.java
+  unrecorded 1-230
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/ExchangeAssembler.java
+  unrecorded 1-116
+easydebug-core/src/main/java/com/orange/igr/easydebug/CaptureEvent.java
+  unrecorded 1-92
+easydebug-core/src/main/java/com/orange/igr/easydebug/Defaults.java
+  unrecorded 1-27
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugWebFluxAutoConfiguration.java
+  unrecorded 1-30
+easydebug-core/src/test/java/com/orange/igr/easydebug/RedactorTest.java
+  unrecorded 1-54
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/testapp/TestApp.java
+  unrecorded 1-47
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugServletAutoConfiguration.java
+  unrecorded 1-36
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/rabbit/RabbitCapture.java
+  unrecorded 1-127
+easydebug-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  unrecorded 1-9
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/feign/FeignCaptureClient.java
+  s_874fffc94cbe46::t_5a659773665096 1-164
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/EasyDebugFeignAutoConfiguration.java
+  s_874fffc94cbe46::t_2c7c4e1f2ef7ba 1-55
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/HookStatus.java
+  unrecorded 1-5
+docs/coverage.md
+  unrecorded 1-53
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/ReplayRequest.java
+  unrecorded 1-132
+easydebug-server/src/main/resources/static/index.html
+  unrecorded 1-304
+easydebug-server/src/main/resources/schema.sql
+  unrecorded 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "d90c15fb4a2cc1b879398a23bf1641e0113f17e2",
+  "prompts": {},
+  "sessions": {
+    "s_874fffc94cbe46": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "c48853b8-18dd-496e-bf7b-d32ac468d303",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    },
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": null
+    }
+  }
+}

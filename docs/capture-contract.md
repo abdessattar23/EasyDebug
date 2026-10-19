@@ -57,6 +57,8 @@ The viewer and `GET /api/events/{id}` show the stored JSON. Nothing is removed o
 
 `error` is `exception class: message` when the call threw. `attributes.stack` holds the stack trace, truncated to `max-body-bytes` with the marker `... [truncated, N chars total]` and `attributes.stackTruncated: true` when that happens.
 
+`attributes.traceId` is set when the request headers contain a W3C `traceparent` value, or when MDC already contains `traceId`. The field is absent when neither is present. EasyDebug does not invent the id and does not write it onto the outgoing call.
+
 Servlet events put `remoteAddr` in `attributes`. Multipart events add `multipart: true`, `bodyIs: "parts"`, and `attributes.parts` (name, filename, content type, size, sha256, truncated). The request hash is the hash of the part bytes in order, not of the multipart framing. If the application never parses the multipart body, the event is still stored and `requestCaptureError` says `getParts()` was not called.
 
 Rabbit events use `method` `PUBLISH` or `DELIVER` and `url` `amqp://{exchange}/{routingKey}`. `attributes.exchange` and `attributes.routingKey` repeat those values. Message headers are stringified onto the request headers. `correlationId` and `messageId` from the AMQP properties are included when present.

@@ -20,6 +20,12 @@ Request and response bodies are spooled. Up to `easydebug.spool-memory-bytes` (8
 
 The business thread does not wait on the collector. `EventSender.submit` returns immediately. A full queue or a rejected POST shows up later as `capture.gap`.
 
+## Trace context
+
+EasyDebug does not create a trace and does not add a `traceparent` header. When the request already has a W3C `traceparent` header, or MDC already has `traceId`, that id is copied to `attributes.traceId`. A missing header stays missing.
+
+`WebClient.builder()` is the static factory. Spring Boot's observation customizer is not applied to it, so a client built that way does not propagate the current trace. Registering that client as a bean lets EasyDebug record the call. The recording still does not add the header. Propagation stays with the application's client, which means the injected `WebClient.Builder` when Micrometer tracing is on the classpath.
+
 ## Not hooked
 
 These do not appear as call events. Do not treat a missing row as proof the call did not happen.

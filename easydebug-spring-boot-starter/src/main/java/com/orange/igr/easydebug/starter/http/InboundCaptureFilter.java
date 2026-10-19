@@ -159,7 +159,7 @@ public final class InboundCaptureFilter extends OncePerRequestFilter {
                     nanos,
                     request.getMethod(),
                     url,
-                    response.getStatus(),
+                    status(response, error),
                     error,
                     headers(request),
                     requestPayload,
@@ -175,6 +175,18 @@ public final class InboundCaptureFilter extends OncePerRequestFilter {
             }
             response.closeSpool();
         }
+    }
+
+    /**
+     * An exception that leaves the filter becomes HTTP 500 when the application has not already
+     * set an error status. The container applies that status after this filter returns.
+     */
+    private static int status(CapturingResponse response, Throwable error) {
+        int status = response.getStatus();
+        if (error != null && !response.isCommitted() && status < 400) {
+            return 500;
+        }
+        return status;
     }
 
     private static boolean isMultipart(HttpServletRequest request) {

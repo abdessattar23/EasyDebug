@@ -10,14 +10,14 @@ From `easydebug/`:
 
 ```text
 mvn -q -DskipTests package
-java -jar easydebug-server/target/easydebug-server-1.0.0.jar
+java -jar easydebug-server/target/easydebug-server-1.0.1.jar
 ```
 
 In another shell:
 
 ```text
 set EASYDEBUG_URL=http://127.0.0.1:8090
-java -jar easydebug-demo/target/easydebug-demo-1.0.0.jar
+java -jar easydebug-demo/target/easydebug-demo-1.0.1.jar
 curl http://127.0.0.1:8080/demo/outbound
 curl http://127.0.0.1:8080/demo/boom
 ```
@@ -38,7 +38,7 @@ On PowerShell, set the variable with `$env:EASYDEBUG_URL = "http://127.0.0.1:809
 <dependency>
     <groupId>com.orange.igr.easydebug</groupId>
     <artifactId>easydebug-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

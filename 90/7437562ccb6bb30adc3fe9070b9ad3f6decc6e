@@ -1,0 +1,19 @@
+.github/workflows/ci.yml
+  s_a0a9a824904a58::t_47cbf8bb7de8cf 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "907437562ccb6bb30adc3fe9070b9ad3f6decc6e",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

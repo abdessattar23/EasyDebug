@@ -8,7 +8,7 @@ spring:
   application:
     name: easydebug-server
   datasource:
-    url: ${EASYDEBUG_JDBC_URL:jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE}
+    url: ${EASYDEBUG_JDBC_URL:jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE}
     driver-class-name: org.h2.Driver
     username: ${EASYDEBUG_JDBC_USER:sa}
     password: ${EASYDEBUG_JDBC_PASSWORD:}

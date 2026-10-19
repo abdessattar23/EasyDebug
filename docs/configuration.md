@@ -34,7 +34,7 @@ The collector URL is always excluded, so the ingest POST is not recorded as an a
 | Property | Environment | Default |
 |---|---|---|
 | `server.port` | `EASYDEBUG_SERVER_PORT` | `8090` |
-| `spring.datasource.url` | `EASYDEBUG_JDBC_URL` | `jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE` |
+| `spring.datasource.url` | `EASYDEBUG_JDBC_URL` | `jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE` |
 | `spring.datasource.username` | `EASYDEBUG_JDBC_USER` | `sa` |
 | `spring.datasource.password` | `EASYDEBUG_JDBC_PASSWORD` | empty |
 

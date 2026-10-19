@@ -1,0 +1,34 @@
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/TraceAndFailureCaptureTest.java
+  s_a0a9a824904a58::t_8d0abdce2d14b4 1-76,78-168
+  s_a0a9a824904a58::t_6cbb0df476c462 77
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/TraceIds.java
+  s_a0a9a824904a58::t_7f50480ace1388 1-66
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/http/InboundCaptureFilter.java
+  s_a0a9a824904a58::t_b3506f36c896d2 180-189
+  s_a0a9a824904a58::t_90667bb1d06af3 162
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/testapp/TestApp.java
+  s_a0a9a824904a58::t_f38f0eeb7c2538 3
+  s_a0a9a824904a58::t_033f22ce6511f3 48-52
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/ExchangeAssembler.java
+  s_a0a9a824904a58::t_0960c23647c9ce 51-54
+docs/capture-contract.md
+  s_a0a9a824904a58::t_9dbda424cac11d 60-61
+docs/coverage.md
+  s_a0a9a824904a58::t_46893998f3de54 23-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "eb3169e936d21418ebd3f76bed5cabf7be2665e3",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

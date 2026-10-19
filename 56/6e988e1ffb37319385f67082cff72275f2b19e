@@ -1,0 +1,25 @@
+easydebug-demo/pom.xml
+  s_a0a9a824904a58::t_87beb85865d9d6 10
+easydebug-spring-boot-starter/pom.xml
+  s_a0a9a824904a58::t_c0c549b7734c23 10
+easydebug-server/pom.xml
+  s_a0a9a824904a58::t_5d3d1ae346ea3c 10
+pom.xml
+  s_a0a9a824904a58::t_058621822e178b 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "566e988e1ffb37319385f67082cff72275f2b19e",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

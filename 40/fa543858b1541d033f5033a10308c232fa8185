@@ -1,0 +1,26 @@
+easydebug-spring-boot-starter/src/main/java/com/orange/igr/easydebug/starter/TraceIds.java
+  s_a0a9a824904a58::t_30138e5487dd31 5-13,20-21,23,26-29,31,34-35,38-39,42,45-46,48-54,57-60,62,65-74,88-111
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/TraceIdsTest.java
+  s_a0a9a824904a58::t_8dcff90fa319cd 1-18,20-31,33-70
+  s_a0a9a824904a58::t_5bff04f16ba3d6 19
+  s_a0a9a824904a58::t_0dda40568966bb 32
+docs/capture-contract.md
+  s_a0a9a824904a58::t_8750ca2cf4f7cd 60-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "40fa543858b1541d033f5033a10308c232fa8185",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  },
+  "capture_gaps": 7
+}

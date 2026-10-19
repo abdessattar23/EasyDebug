@@ -24,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "easydebug.url=http://127.0.0.1:9",
         "easydebug.service=reactive-test",
         "spring.main.web-application-type=reactive",
+        "management.tracing.enabled=false",
         "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration"
 })
 class ReactiveCaptureTest {

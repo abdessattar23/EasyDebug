@@ -22,9 +22,23 @@ The business thread does not wait on the collector. `EventSender.submit` returns
 
 ## Trace context
 
-EasyDebug does not create a trace and does not add a `traceparent` header. When the request already has a W3C `traceparent` header, or MDC already has `traceId`, that id is copied to `attributes.traceId`. A missing header stays missing.
+EasyDebug does not create a trace and does not add a `traceparent` header. `attributes.traceId` is filled only by the rules in the capture contract. An invalid header is not repaired, and it is not replaced with an MDC value.
 
-`WebClient.builder()` is the static factory. Spring Boot's observation customizer is not applied to it, so a client built that way does not propagate the current trace. Registering that client as a bean lets EasyDebug record the call. The recording still does not add the header. Propagation stays with the application's client, which means the injected `WebClient.Builder` when Micrometer tracing is on the classpath.
+Propagation is Spring's. These two clients were compared with Micrometer tracing on (`micrometer-tracing-bridge-brave`, sampling probability `1.0`) and the same application, once with `easydebug.url` empty and once with the starter enabled:
+
+| Client | `traceparent` on the next hop |
+|---|---|
+| `WebClient` built from the injected `WebClient.Builder` | The incoming trace id is forwarded. |
+| `WebClient.builder().build()` registered as a bean | No `traceparent` is sent. |
+
+The starter did not change either result. The static factory does not receive Spring Boot's observation customizer, so a load-balanced client written as `WebClient.builder().baseUrl(...).filter(...).build()` records an outbound row when it is a bean and still does not forward the trace. Build that client from the injected builder:
+
+```java
+@Bean
+WebClient employee(WebClient.Builder builder) {
+    return builder.baseUrl("http://employee-service").build();
+}
+```
 
 ## Not hooked
 

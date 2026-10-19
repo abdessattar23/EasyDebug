@@ -38,6 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(properties = {
         "easydebug.url=http://127.0.0.1:9",
         "easydebug.service=starter-test",
+        "management.tracing.enabled=false",
         "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration"
 })
 class CaptureHooksTest {

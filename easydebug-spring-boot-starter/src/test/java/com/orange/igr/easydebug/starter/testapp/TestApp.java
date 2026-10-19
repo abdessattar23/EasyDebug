@@ -4,7 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,5 +52,16 @@ public class TestApp {
     public Map<String, String> headers(HttpServletRequest request) {
         String traceparent = request.getHeader("traceparent");
         return Map.of("traceparent", traceparent == null ? "" : traceparent);
+    }
+
+    @GetMapping("/status/{code}")
+    public ResponseEntity<String> status(@PathVariable int code) {
+        return ResponseEntity.status(code).body("status-" + code);
+    }
+
+    @GetMapping("/slow")
+    public String slow() throws InterruptedException {
+        Thread.sleep(1_500L);
+        return "late";
     }
 }

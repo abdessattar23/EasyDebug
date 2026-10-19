@@ -57,7 +57,11 @@ The viewer and `GET /api/events/{id}` show the stored JSON. Nothing is removed o
 
 `error` is `exception class: message` when the call threw. `attributes.stack` holds the stack trace, truncated to `max-body-bytes` with the marker `... [truncated, N chars total]` and `attributes.stackTruncated: true` when that happens.
 
-`attributes.traceId` is set when the request headers contain a W3C `traceparent` value, or when MDC already contains `traceId`. The field is absent when neither is present. EasyDebug does not invent the id and does not write it onto the outgoing call.
+`attributes.traceId` is copied from a trace the call already has. EasyDebug does not invent an id and does not write `traceparent` onto the outgoing call.
+
+When a `traceparent` header is present, it is the only source. A version `00` value is accepted when it has exactly four fields: version `00`, a 32-character hexadecimal trace id, a 16-character hexadecimal parent id, and a 2-character hexadecimal flags field. Surrounding whitespace is removed. Hex letters are stored in lowercase. The trace id and the parent id are rejected when every character is `0`. Any other version, including `ff`, is rejected. A present header that fails these checks leaves `attributes.traceId` unset, including when MDC holds a trace id.
+
+MDC is used only when the header is absent. The MDC entry must be named `traceId`, contain exactly 32 hexadecimal characters, and not be all zeros. A 16-character id is not accepted.
 
 Servlet events put `remoteAddr` in `attributes`. Multipart events add `multipart: true`, `bodyIs: "parts"`, and `attributes.parts` (name, filename, content type, size, sha256, truncated). The request hash is the hash of the part bytes in order, not of the multipart framing. If the application never parses the multipart body, the event is still stored and `requestCaptureError` says `getParts()` was not called.
 

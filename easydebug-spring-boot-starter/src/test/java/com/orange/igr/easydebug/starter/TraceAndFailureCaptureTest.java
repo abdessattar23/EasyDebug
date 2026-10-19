@@ -14,14 +14,18 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.reactive.function.client.ClientRequest;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.netty.http.client.HttpClient;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -31,6 +35,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @TestPropertySource(properties = {
         "easydebug.url=http://127.0.0.1:9",
         "easydebug.service=trace-test",
+        "management.tracing.enabled=false",
         "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration"
 })
 class TraceAndFailureCaptureTest {
@@ -50,6 +55,9 @@ class TraceAndFailureCaptureTest {
 
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
+
+    @Autowired
+    private WebClient.Builder webClientBuilder;
 
     @LocalServerPort
     private int port;
@@ -100,11 +108,105 @@ class TraceAndFailureCaptureTest {
         List<JsonNode> events = await("/boom", "127.0.0.1:1");
         assertThat(events).anyMatch(event ->
                 inbound(event) && event.path("url").asText().contains("/boom")
-                        && event.path("status").asInt() == 500);
+                        && event.path("status").asInt() == 500
+                        && event.path("error").asText().contains("IllegalStateException: boom"));
         assertThat(events).anyMatch(event ->
                 "resttemplate".equals(event.path("hook").asText())
                         && event.path("url").asText().contains("127.0.0.1:1")
+                        && event.path("error").asText().contains("ConnectException"));
+    }
+
+    @Test
+    void recordsClientAndServerErrorStatuses() throws Exception {
+        TestRestTemplate http = new TestRestTemplate();
+        String base = "http://127.0.0.1:" + port;
+        assertThat(http.getForEntity(base + "/status/400", String.class).getStatusCode().value()).isEqualTo(400);
+        assertThat(http.getForEntity(base + "/status/503", String.class).getStatusCode().value()).isEqualTo(503);
+        assertThatThrownBy(() -> webClientBuilder.build().get()
+                .uri(base + "/status/400")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block(Duration.ofSeconds(5)))
+                .isInstanceOf(WebClientResponseException.class)
+                .extracting(error -> ((WebClientResponseException) error).getStatusCode().value())
+                .isEqualTo(400);
+
+        List<JsonNode> events = awaitMatch(found ->
+                found.stream().anyMatch(event -> inbound(event) && event.path("url").asText().contains("/status/400")
+                        && event.path("status").asInt() == 400)
+                        && found.stream().anyMatch(event -> inbound(event) && event.path("url").asText().contains("/status/503")
+                        && event.path("status").asInt() == 503)
+                        && found.stream().anyMatch(event -> "webclient".equals(event.path("hook").asText())
+                        && event.path("url").asText().contains("/status/400")
+                        && event.path("status").asInt() == 400));
+        assertThat(events).anyMatch(event ->
+                inbound(event) && event.path("url").asText().contains("/status/400")
+                        && event.path("status").asInt() == 400
+                        && event.path("response").path("body").asText().contains("status-400")
+                        && event.path("error").isNull());
+        assertThat(events).anyMatch(event ->
+                inbound(event) && event.path("url").asText().contains("/status/503")
+                        && event.path("status").asInt() == 503
+                        && event.path("response").path("body").asText().contains("status-503")
+                        && event.path("error").isNull());
+        assertThat(events).anyMatch(event ->
+                "webclient".equals(event.path("hook").asText())
+                        && "OUT".equals(event.path("direction").asText())
+                        && event.path("url").asText().contains("/status/400")
+                        && event.path("status").asInt() == 400
+                        && event.path("response").path("body").asText().contains("status-400"));
+    }
+
+    @Test
+    void recordsWebClientRefusalAndTimeout() throws Exception {
+        WebClient client = webClientBuilder.clone()
+                .clientConnector(new ReactorClientHttpConnector(
+                        HttpClient.create().responseTimeout(Duration.ofMillis(200))))
+                .build();
+        assertThatThrownBy(() -> client.get()
+                .uri("http://127.0.0.1:" + port + "/slow")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block(Duration.ofSeconds(5)))
+                .isInstanceOf(Exception.class);
+        assertThatThrownBy(() -> webClientBuilder.build().get()
+                .uri("http://127.0.0.1:1/absent")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block(Duration.ofSeconds(5)))
+                .isInstanceOf(Exception.class);
+
+        List<JsonNode> events = awaitMatch(found ->
+                found.stream().anyMatch(event -> "webclient".equals(event.path("hook").asText())
+                        && event.path("url").asText().contains("/slow")
+                        && !event.path("error").asText().isBlank())
+                        && found.stream().anyMatch(event -> "webclient".equals(event.path("hook").asText())
+                        && event.path("url").asText().contains("127.0.0.1:1/absent")
+                        && (event.path("error").asText().contains("ConnectException")
+                        || event.path("attributes").path("stack").asText().contains("ConnectException"))));
+        assertThat(events).anyMatch(event ->
+                "webclient".equals(event.path("hook").asText())
+                        && event.path("url").asText().contains("/slow")
                         && !event.path("error").asText().isBlank());
+        assertThat(events).anyMatch(event ->
+                "webclient".equals(event.path("hook").asText())
+                        && event.path("url").asText().contains("127.0.0.1:1/absent")
+                        && (event.path("error").asText().contains("ConnectException")
+                        || event.path("attributes").path("stack").asText().contains("ConnectException"))
+                        && event.path("status").isNull());
+    }
+
+    private List<JsonNode> awaitMatch(Predicate<List<JsonNode>> ready) throws Exception {
+        long end = System.nanoTime() + TimeUnit.SECONDS.toNanos(8);
+        List<JsonNode> events = List.of();
+        while (System.nanoTime() < end) {
+            events = events();
+            if (ready.test(events)) {
+                return events;
+            }
+            Thread.sleep(30);
+        }
+        throw new AssertionError(events.toString());
     }
 
     private List<JsonNode> await(String... required) throws Exception {

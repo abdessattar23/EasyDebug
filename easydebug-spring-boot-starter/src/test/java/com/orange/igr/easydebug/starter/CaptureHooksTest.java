@@ -147,9 +147,7 @@ class CaptureHooksTest {
                     .contains("hello-feign");
         }
 
-        List<JsonNode> events = await(
-                "servlet", "webclient", "restclient", "resttemplate", "feign", "capture.policy",
-                "hello-plain-template", "hello-plain-webclient", "hello-plain-restclient", "hello-feign");
+        List<JsonNode> events = awaitCapturedCalls();
 
         assertThat(events).anyMatch(event ->
                 "capture.policy".equals(event.path("kind").asText())
@@ -181,24 +179,27 @@ class CaptureHooksTest {
         assertThat(events).noneMatch(event -> event.toString().contains("Bearer secret"));
     }
 
-    private List<JsonNode> await(String... required) throws Exception {
+    private List<JsonNode> awaitCapturedCalls() throws Exception {
         long end = System.nanoTime() + TimeUnit.SECONDS.toNanos(8);
+        List<JsonNode> events = List.of();
         while (System.nanoTime() < end) {
-            List<JsonNode> events = events();
-            String blob = events.toString();
-            boolean ready = true;
-            for (String token : required) {
-                if (!blob.contains(token)) {
-                    ready = false;
-                    break;
-                }
-            }
-            if (ready && events.stream().anyMatch(event -> "webclient".equals(event.path("hook").asText()))) {
+            events = events();
+            boolean policy = events.stream().anyMatch(event -> "capture.policy".equals(event.path("kind").asText()));
+            boolean upload = events.stream().anyMatch(event -> inbound(event, "/upload"));
+            boolean form = events.stream().anyMatch(event -> inbound(event, "/form"));
+            if (policy && upload && form
+                    && countHook(events, "resttemplate", "hello-resttemplate") == 1
+                    && countHook(events, "resttemplate", "hello-plain-template") == 1
+                    && countHook(events, "webclient", "hello-webclient") == 1
+                    && countHook(events, "webclient", "hello-plain-webclient") == 1
+                    && countHook(events, "restclient", "hello-restclient") == 1
+                    && countHook(events, "restclient", "hello-plain-restclient") == 1
+                    && countHook(events, "feign", "hello-feign") == 1) {
                 return events;
             }
             Thread.sleep(30);
         }
-        throw new AssertionError(events().toString());
+        throw new AssertionError(events.toString());
     }
 
     private List<JsonNode> events() throws Exception {

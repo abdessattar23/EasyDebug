@@ -1,0 +1,19 @@
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/TraceAndFailureCaptureTest.java
+  s_a0a9a824904a58::t_d42668844c16e5 111-119
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "3ddd72fed630f7b61ebb9dc87cc20f4e2c998edd",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

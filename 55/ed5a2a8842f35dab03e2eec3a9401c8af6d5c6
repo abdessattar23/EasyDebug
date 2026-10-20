@@ -1,0 +1,33 @@
+easydebug-server/src/test/java/com/orange/igr/easydebug/server/DefaultDatabaseStartupTest.java
+  s_a0a9a824904a58::t_407290e00fe2c8 44
+pom.xml
+  s_a0a9a824904a58::t_48cd2c5781068b 116-117
+README.md
+  s_a0a9a824904a58::t_b15dcbe214feb0 25
+easydebug-server/src/main/resources/application.yml
+  s_a0a9a824904a58::t_0aab6e843a36ec 2
+easydebug-server/src/test/java/com/orange/igr/easydebug/server/PackagedServerIT.java
+  s_a0a9a824904a58::t_daa918109d8aae 54
+  s_a0a9a824904a58::t_b5e98a877f7d4d 8-11,13
+  s_a0a9a824904a58::t_fd5690246b3a95 122,126-148
+  s_a0a9a824904a58::t_dc919b09faabcc 41
+docs/configuration.md
+  s_a0a9a824904a58::t_ba1d96aa0ee143 44-45
+  s_a0a9a824904a58::t_de52a100d9a908 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "55ed5a2a8842f35dab03e2eec3a9401c8af6d5c6",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

@@ -108,7 +108,15 @@ class TraceAndFailureCaptureTest {
                 .getForObject("http://127.0.0.1:1/absent", String.class))
                 .isInstanceOf(Exception.class);
 
-        List<JsonNode> events = await("/boom", "127.0.0.1:1");
+        List<JsonNode> events = awaitMatch(found ->
+                found.stream().anyMatch(event ->
+                        inbound(event) && event.path("url").asText().contains("/boom")
+                                && event.path("status").asInt() == 500
+                                && event.path("error").asText().contains("IllegalStateException: boom"))
+                        && found.stream().anyMatch(event ->
+                        "resttemplate".equals(event.path("hook").asText())
+                                && event.path("url").asText().contains("127.0.0.1:1")
+                                && event.path("error").asText().contains("ConnectException")));
         assertThat(events).anyMatch(event ->
                 inbound(event) && event.path("url").asText().contains("/boom")
                         && event.path("status").asInt() == 500
@@ -210,26 +218,6 @@ class TraceAndFailureCaptureTest {
             Thread.sleep(30);
         }
         throw new AssertionError(events.toString());
-    }
-
-    private List<JsonNode> await(String... required) throws Exception {
-        long end = System.nanoTime() + TimeUnit.SECONDS.toNanos(8);
-        while (System.nanoTime() < end) {
-            List<JsonNode> events = events();
-            String blob = events.toString();
-            boolean ready = true;
-            for (String token : required) {
-                if (!blob.contains(token)) {
-                    ready = false;
-                    break;
-                }
-            }
-            if (ready) {
-                return events;
-            }
-            Thread.sleep(30);
-        }
-        throw new AssertionError(events().toString());
     }
 
     private List<JsonNode> events() throws Exception {

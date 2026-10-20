@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.orange.igr.easydebug</groupId>
+        <groupId>io.github.abdessattar23</groupId>
         <artifactId>easydebug</artifactId>
         <version>1.0.1</version>
     </parent>
@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.orange.igr.easydebug</groupId>
+            <groupId>io.github.abdessattar23</groupId>
             <artifactId>easydebug-core</artifactId>
             <version>${project.version}</version>
         </dependency>

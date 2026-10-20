@@ -36,7 +36,7 @@ On PowerShell, set the variable with `$env:EASYDEBUG_URL = "http://127.0.0.1:809
 
 ```xml
 <dependency>
-    <groupId>com.orange.igr.easydebug</groupId>
+    <groupId>io.github.abdessattar23</groupId>
     <artifactId>easydebug-spring-boot-starter</artifactId>
     <version>1.0.1</version>
 </dependency>

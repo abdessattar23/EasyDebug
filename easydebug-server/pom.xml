@@ -5,14 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.orange.igr.easydebug</groupId>
+        <groupId>io.github.abdessattar23</groupId>
         <artifactId>easydebug</artifactId>
-        <version>1.0.1</version>
+        <version>2.0.0</version>
     </parent>
 
     <artifactId>easydebug-server</artifactId>
     <name>EasyDebug Server</name>
     <description>Ingest, store, and show every captured event.</description>
+
+    <properties>
+        <central.skip>true</central.skip>
+    </properties>
 
     <dependencies>
         <dependency>

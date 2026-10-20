@@ -11,13 +11,35 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.orange.igr.easydebug</groupId>
+    <groupId>io.github.abdessattar23</groupId>
     <artifactId>easydebug</artifactId>
-    <version>1.0.1</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
     <name>EasyDebug</name>
     <description>Portable source of truth for inbound and outbound calls. Add the starter and a collector URL.</description>
+    <url>https://github.com/abdessattar23/EasyDebug</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>abdessattar23</id>
+            <name>Mohammed Abdessetar Elyagoubi</name>
+            <url>https://github.com/abdessattar23</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/abdessattar23/EasyDebug.git</connection>
+        <developerConnection>scm:git:https://github.com/abdessattar23/EasyDebug.git</developerConnection>
+        <url>https://github.com/abdessattar23/EasyDebug</url>
+    </scm>
 
     <modules>
         <module>easydebug-core</module>
@@ -29,5 +51,75 @@
     <properties>
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <central.skip>false</central.skip>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>central</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.11.2</version>
+                        <configuration>
+                            <doclint>none</doclint>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <bestPractices>false</bestPractices>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>false</autoPublish>
+                            <waitUntil>validated</waitUntil>
+                            <skipPublishing>${central.skip}</skipPublishing>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

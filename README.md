@@ -10,19 +10,19 @@ From `easydebug/`:
 
 ```text
 mvn -q -DskipTests package
-java -jar easydebug-server/target/easydebug-server-1.0.1.jar
+java -jar easydebug-server/target/easydebug-server-2.0.0.jar
 ```
 
 In another shell:
 
 ```text
 set EASYDEBUG_URL=http://127.0.0.1:8090
-java -jar easydebug-demo/target/easydebug-demo-1.0.1.jar
+java -jar easydebug-demo/target/easydebug-demo-2.0.0.jar
 curl http://127.0.0.1:8080/demo/outbound
 curl http://127.0.0.1:8080/demo/boom
 ```
 
-Open `http://127.0.0.1:8090`. You should see:
+Open `http://127.0.0.1:8090`. The server listens on `127.0.0.1` unless `EASYDEBUG_SERVER_ADDRESS` is set. The event API has no authentication. You should see:
 
 - a `capture.policy` row listing the hooks that installed
 - an `IN` for `GET /demo/outbound`
@@ -36,9 +36,9 @@ On PowerShell, set the variable with `$env:EASYDEBUG_URL = "http://127.0.0.1:809
 
 ```xml
 <dependency>
-    <groupId>com.orange.igr.easydebug</groupId>
+    <groupId>io.github.abdessattar23</groupId>
     <artifactId>easydebug-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 

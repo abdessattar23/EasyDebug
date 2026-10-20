@@ -1,0 +1,141 @@
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/BodyCapture.java
+  s_4f861748a775b8::t_99615f651a6eb3 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/CaptureEvent.java
+  s_4f861748a775b8::t_100ed11e0750c6 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/CapturePolicy.java
+  s_4f861748a775b8::t_b56bfbea8dc765 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/Defaults.java
+  s_4f861748a775b8::t_2fdfdc420a6c74 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/EventPoster.java
+  s_4f861748a775b8::t_a2d858ad4afe2e 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/EventSender.java
+  s_4f861748a775b8::t_dc1b33154487f0 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/JdkEventPoster.java
+  s_4f861748a775b8::t_2d50494eb7e4ff 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/JsonMappers.java
+  s_4f861748a775b8::t_329029d88b41f4 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/Payload.java
+  s_4f861748a775b8::t_ec134f6c12a97a 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/Redactor.java
+  s_4f861748a775b8::t_ef805a7b024f8f 1
+easydebug-core/src/main/java/io/github/abdessattar23/easydebug/Spool.java
+  s_4f861748a775b8::t_08cb1c2746261d 1
+easydebug-core/src/test/java/io/github/abdessattar23/easydebug/BodyCaptureTest.java
+  s_4f861748a775b8::t_dafa56790fda93 1
+easydebug-core/src/test/java/io/github/abdessattar23/easydebug/EventSenderTest.java
+  s_4f861748a775b8::t_a239fc08d7c8a4 1
+easydebug-core/src/test/java/io/github/abdessattar23/easydebug/RedactorTest.java
+  s_4f861748a775b8::t_efb97176ac18ce 1
+easydebug-demo/src/main/java/io/github/abdessattar23/easydebug/demo/DemoApplication.java
+  s_4f861748a775b8::t_9a2018aba4e392 1
+easydebug-demo/src/main/java/io/github/abdessattar23/easydebug/demo/DemoController.java
+  s_4f861748a775b8::t_69f885467eeb1a 1
+easydebug-server/src/main/java/io/github/abdessattar23/easydebug/server/EasyDebugServerApplication.java
+  s_4f861748a775b8::t_2f349d4bd714f1 1
+easydebug-server/src/main/java/io/github/abdessattar23/easydebug/server/EventController.java
+  s_4f861748a775b8::t_d3da585c7efa3f 1
+easydebug-server/src/main/java/io/github/abdessattar23/easydebug/server/EventStore.java
+  s_4f861748a775b8::t_7cef28a370f564 1
+easydebug-server/src/test/java/io/github/abdessattar23/easydebug/server/DefaultDatabaseStartupTest.java
+  s_4f861748a775b8::t_a6be48fed2c11c 1
+easydebug-server/src/test/java/io/github/abdessattar23/easydebug/server/EventStoreTest.java
+  s_4f861748a775b8::t_4c7a2d4656ea42 1
+easydebug-server/src/test/java/io/github/abdessattar23/easydebug/server/PackagedServerIT.java
+  s_4f861748a775b8::t_96df8c7f529774 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugAutoConfiguration.java
+  s_4f861748a775b8::t_3e40829f3676d9 1,3-7
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugEnabledCondition.java
+  s_4f861748a775b8::t_8cca54f4366210 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugFeignAutoConfiguration.java
+  s_4f861748a775b8::t_931a81d27b8821 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugNoticeAutoConfiguration.java
+  s_4f861748a775b8::t_320470206f5822 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugProperties.java
+  s_4f861748a775b8::t_f8c8aee482d778 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugRabbitAutoConfiguration.java
+  s_4f861748a775b8::t_99c0027b2f2d7a 1,3
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugRecorder.java
+  s_4f861748a775b8::t_c7948e22783dad 1,3-5
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugRestClientAutoConfiguration.java
+  s_4f861748a775b8::t_07d0a06162acbf 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugRestTemplateAutoConfiguration.java
+  s_4f861748a775b8::t_424cb115f3de40 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugServletAutoConfiguration.java
+  s_4f861748a775b8::t_51d5b8ae7ece72 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugWebClientAutoConfiguration.java
+  s_4f861748a775b8::t_2c33aeec0f7700 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/EasyDebugWebFluxAutoConfiguration.java
+  s_4f861748a775b8::t_1df2cbc6cc4a41 1,3-4
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/ExchangeAssembler.java
+  s_4f861748a775b8::t_7821613f128f5f 1,3-7
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/HookStatus.java
+  s_4f861748a775b8::t_8e7218acfdb843 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/HttpClients.java
+  s_4f861748a775b8::t_bde4d0cdeaa726 1,3
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/MdcSnapshot.java
+  s_4f861748a775b8::t_6908d2603d600d 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/TraceIds.java
+  s_4f861748a775b8::t_654ed0d8bacc6c 1
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/feign/FeignCaptureClient.java
+  s_4f861748a775b8::t_2c14a84aefaf3e 1,3-9
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/BufferingCaptureInterceptor.java
+  s_4f861748a775b8::t_c14bc03283df45 1,3-9,78
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/CapturingResponse.java
+  s_4f861748a775b8::t_b18f854aa6f505 1,3-5
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/InboundCaptureFilter.java
+  s_4f861748a775b8::t_fcf12503b62fc5 1,3-9
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/InboundWebFilter.java
+  s_4f861748a775b8::t_e36b39857c8ee2 1,3-9
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/MultipartCaptureRequest.java
+  s_4f861748a775b8::t_c043d13c093991 1,3-5
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/ReplayRequest.java
+  s_4f861748a775b8::t_1f90b94ba12949 1,3
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/SpoolServletInputStream.java
+  s_4f861748a775b8::t_184addce3fe90d 1,3
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/http/WebClientCaptureFilter.java
+  s_4f861748a775b8::t_27278479363a9b 1,3-9
+easydebug-spring-boot-starter/src/main/java/io/github/abdessattar23/easydebug/starter/rabbit/RabbitCapture.java
+  s_4f861748a775b8::t_c80049535619ec 1,3-8,87
+easydebug-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  s_4f861748a775b8::t_f3a6cc6eb8a624 1-9
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/CaptureHooksTest.java
+  s_4f861748a775b8::t_112316c39e23d3 1,4-5
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/ReactiveCaptureTest.java
+  s_4f861748a775b8::t_d4b46a2bba3f95 1,4-5
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/RecordingPoster.java
+  s_4f861748a775b8::t_55b3ad109df79f 1,3
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/TraceAndFailureCaptureTest.java
+  s_4f861748a775b8::t_cf5d977635e4f4 1,4-5
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/TraceIdsTest.java
+  s_4f861748a775b8::t_553bb0e316f7bb 1
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/rabbit/RabbitCaptureTest.java
+  s_4f861748a775b8::t_db3f029ef3ac2e 1,4-8
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/reactivetest/ReactiveApp.java
+  s_4f861748a775b8::t_859160c3916889 1
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/testapp/TestApp.java
+  s_4f861748a775b8::t_efceeb7aeee10b 1
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/tracing/TraceRelay.java
+  s_4f861748a775b8::t_00fd6f71743373 1
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/tracing/TracingApp.java
+  s_4f861748a775b8::t_c3fc0d48f92234 1
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/tracing/TracingWithStarterTest.java
+  s_4f861748a775b8::t_ac5fd72f318496 1,4-5
+easydebug-spring-boot-starter/src/test/java/io/github/abdessattar23/easydebug/starter/tracing/TracingWithoutStarterTest.java
+  s_4f861748a775b8::t_3ce14e76e9a0f6 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "efd74d301b712a64152d777ffa2e5cca5a181122",
+  "prompts": {},
+  "sessions": {
+    "s_4f861748a775b8": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

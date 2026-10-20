@@ -84,7 +84,10 @@ class TraceAndFailureCaptureTest {
         }
         assertThat(plainBody).contains("\"traceparent\":\"\"");
 
-        List<JsonNode> events = await("/headers");
+        List<JsonNode> events = awaitMatch(found ->
+                found.stream().anyMatch(event ->
+                        "webclient".equals(event.path("hook").asText())
+                                && event.path("mdc").path("traceId").asText().equals("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")));
         assertThat(events).anyMatch(event ->
                 inbound(event) && event.path("request").path("headers").path("traceparent").asText().equals(TRACEPARENT)
                         && event.path("attributes").path("traceId").asText().equals("6ad628b71d876f1c9cf7ba771993f23e"));

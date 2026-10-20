@@ -1,0 +1,21 @@
+easydebug-spring-boot-starter/src/test/java/com/orange/igr/easydebug/starter/CaptureHooksTest.java
+  s_a0a9a824904a58::t_576b60da42f6cc 188-190
+  s_a0a9a824904a58::t_279b516a94af4b 150
+  s_a0a9a824904a58::t_217819f57ebb27 182,184,186-187,191-197,202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "90dd8c56e224335648475d6128c46654afb76bb5",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

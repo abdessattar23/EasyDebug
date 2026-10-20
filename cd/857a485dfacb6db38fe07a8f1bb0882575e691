@@ -1,0 +1,31 @@
+easydebug-core/pom.xml
+  s_a0a9a824904a58::t_9804de77e001e1 10
+CHANGELOG.md
+  s_a0a9a824904a58::t_089e9e1647cab0 1-17
+easydebug-spring-boot-starter/pom.xml
+  s_a0a9a824904a58::t_77ec4426d6b4b9 10
+easydebug-server/pom.xml
+  s_a0a9a824904a58::t_53b03e2ced2c97 10
+easydebug-demo/pom.xml
+  s_a0a9a824904a58::t_38378b0728bb0f 10
+README.md
+  s_a0a9a824904a58::t_3fd3b86d2be727 13,20,41
+pom.xml
+  s_a0a9a824904a58::t_b956662cad05bf 16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_track_version": "development:0.1.0",
+  "base_commit_sha": "cd857a485dfacb6db38fe07a8f1bb0882575e691",
+  "prompts": {},
+  "sessions": {
+    "s_a0a9a824904a58": {
+      "agent_id": {
+        "tool": "ai",
+        "id": "01b63eca-bba3-425d-b75b-c7653f64e7e7",
+        "model": "ai"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}

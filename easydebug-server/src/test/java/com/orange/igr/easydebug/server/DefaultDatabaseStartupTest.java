@@ -41,6 +41,7 @@ class DefaultDatabaseStartupTest {
     void shippedUrlOmitsTheUnsupportedH2Combination() throws Exception {
         String configuration = Files.readString(Path.of("src/main/resources/application.yml"), StandardCharsets.UTF_8);
         assertThat(configuration).contains("jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE");
+        assertThat(configuration).contains("address: ${EASYDEBUG_SERVER_ADDRESS:127.0.0.1}");
         assertThat(configuration).doesNotContain("AUTO_SERVER");
     }
 

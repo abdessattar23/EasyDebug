@@ -22,7 +22,7 @@ curl http://127.0.0.1:8080/demo/outbound
 curl http://127.0.0.1:8080/demo/boom
 ```
 
-Open `http://127.0.0.1:8090`. You should see:
+Open `http://127.0.0.1:8090`. The server listens on `127.0.0.1` unless `EASYDEBUG_SERVER_ADDRESS` is set. The event API has no authentication. You should see:
 
 - a `capture.policy` row listing the hooks that installed
 - an `IN` for `GET /demo/outbound`

@@ -1,4 +1,5 @@
 server:
+  address: ${EASYDEBUG_SERVER_ADDRESS:127.0.0.1}
   port: ${EASYDEBUG_SERVER_PORT:8090}
   tomcat:
     max-http-form-post-size: 64MB

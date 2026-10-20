@@ -33,12 +33,15 @@ The collector URL is always excluded, so the ingest POST is not recorded as an a
 
 | Property | Environment | Default |
 |---|---|---|
+| `server.address` | `EASYDEBUG_SERVER_ADDRESS` | `127.0.0.1` |
 | `server.port` | `EASYDEBUG_SERVER_PORT` | `8090` |
 | `spring.datasource.url` | `EASYDEBUG_JDBC_URL` | `jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE` |
 | `spring.datasource.username` | `EASYDEBUG_JDBC_USER` | `sa` |
 | `spring.datasource.password` | `EASYDEBUG_JDBC_PASSWORD` | empty |
 
 Point `EASYDEBUG_JDBC_URL` at another JDBC database if you do not want the H2 file. The schema in `schema.sql` is H2 dialect (`MERGE`, `CLOB`).
+
+The server binds to loopback. `POST /api/events` and `GET /api/events` have no authentication, and stored events keep the captured HTTP bodies. Another process on the same machine can read them. Set `EASYDEBUG_SERVER_ADDRESS` to `0.0.0.0` or another interface only when that exposure is intentional. This repository does not terminate TLS and does not check credentials. A reachable address still needs a proxy that provides both. That setup is not covered by the tests here.
 
 Tomcat's form post limit on the server is 64MB so a batch of capped bodies can land. Raise `server.tomcat.max-http-form-post-size` if you raise `easydebug.max-body-bytes` and send large batches.
 

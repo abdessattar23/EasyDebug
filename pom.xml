@@ -113,8 +113,8 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
-                            <waitUntil>published</waitUntil>
+                            <autoPublish>false</autoPublish>
+                            <waitUntil>validated</waitUntil>
                             <skipPublishing>${central.skip}</skipPublishing>
                         </configuration>
                     </plugin>

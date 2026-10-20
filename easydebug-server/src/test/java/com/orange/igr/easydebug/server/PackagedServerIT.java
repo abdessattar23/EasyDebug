@@ -5,7 +5,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.jar.JarFile;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -33,6 +38,7 @@ class PackagedServerIT {
         Path jar = packagedJar();
 
         assertThat(packagedConfig(jar)).contains("jdbc:h2:file:./data/easydebug;DB_CLOSE_ON_EXIT=FALSE");
+        assertThat(packagedConfig(jar)).contains("address: ${EASYDEBUG_SERVER_ADDRESS:127.0.0.1}");
         assertThat(packagedConfig(jar)).doesNotContain("AUTO_SERVER");
         String log = startAndStop(jar, port);
         assertThat(log).contains("Started EasyDebugServerApplication");
@@ -45,6 +51,7 @@ class PackagedServerIT {
                 """;
         try (ServerHandle first = start(jar, port)) {
             awaitStarted(first);
+            assertAcceptsOnlyLoopback(port);
             HttpResponse<String> created = http.send(request(port, "/api/events")
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(body))
@@ -112,7 +119,33 @@ class PackagedServerIT {
         command.directory(home.toFile());
         command.redirectErrorStream(true);
         command.environment().put("EASYDEBUG_SERVER_PORT", Integer.toString(port));
+        command.environment().remove("EASYDEBUG_SERVER_ADDRESS");
         return new ServerHandle(command.start());
+    }
+
+    private static void assertAcceptsOnlyLoopback(int port) throws Exception {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(InetAddress.getLoopbackAddress(), port), 2000);
+        }
+        var interfaces = NetworkInterface.getNetworkInterfaces();
+        while (interfaces.hasMoreElements()) {
+            NetworkInterface nic = interfaces.nextElement();
+            if (!nic.isUp()) {
+                continue;
+            }
+            for (var binding : nic.getInterfaceAddresses()) {
+                InetAddress address = binding.getAddress();
+                if (address.isLoopbackAddress() || address.isAnyLocalAddress()) {
+                    continue;
+                }
+                try (Socket socket = new Socket()) {
+                    socket.connect(new InetSocketAddress(address, port), 500);
+                    throw new AssertionError("collector accepted a non-loopback address " + address);
+                } catch (IOException refused) {
+                    // this interface is not the listen address
+                }
+            }
+        }
     }
 
     private static void awaitPortFree(int port) throws Exception {
